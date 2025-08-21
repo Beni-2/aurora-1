@@ -74,11 +74,13 @@
       box-shadow:var(--shadow); 
       width:100%; 
       max-width:100%;
-      min-height:300px; /* 🔥 ensures it never collapses */
+      min-height:300px;
+      background:url('aurora-hero.jpg') center top/cover no-repeat; /* fallback poster */
     }
     .hero__img, .hero__vid{
       width:100%; height:100%; 
-      object-fit:cover; object-position:center 20%; 
+      object-fit:cover; 
+      object-position:center top;
       transition:opacity 0.6s ease;
       position:absolute; inset:0;
     }
@@ -132,18 +134,21 @@
     #toTopBtn.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
     #toTopBtn.hide { opacity: 0; pointer-events: none; transform: translateY(20px); }
 
-    /* Mobile Adjustments */
-    @media (max-width:980px){
+    /* Tablet Fix */
+    @media (max-width:980px) and (min-width:601px){
       .hero, .about{grid-template-columns:1fr}
-      .hero__card{max-width:500px; margin:auto; width:100%;}
+      .hero__card{max-width:600px; margin:auto; aspect-ratio:3/4; min-height:380px;}
+      .hero__img, .hero__vid{object-position:center top;}
     }
+
+    /* Mobile Adjustments */
     @media (max-width:600px){
       .nav__row{flex-direction:column; align-items:flex-start; gap:8px}
       .nav__links{width:100%; justify-content:flex-start; gap:12px}
       .btn, button{width:100%; text-align:center}
       .gallery{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
       .hero{padding:40px 0}
-      .hero__card{aspect-ratio:3/4; min-height:260px;} /* 🔥 smaller devices keep ratio */
+      .hero__card{aspect-ratio:3/4; min-height:260px;}
     }
   </style>
 </head>
